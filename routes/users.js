@@ -18,8 +18,6 @@ router.post('/register', async(req, res, next) => {
         req.flash('success', 'Welcom to 캠프장~');
         res.redirect('/campgrounds');
     })
-    req.flash('success', 'WelCOMTO YELP CAMP!');
-    res.redirect('/campgrounds');
     }catch(e) {
         req.flash('error', e.message);
         res.redirect('/register')
