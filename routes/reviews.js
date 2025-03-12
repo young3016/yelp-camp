@@ -8,14 +8,16 @@ const Review = require('../models/review');
 
 const { reviewSchema } = require('../schemas.js');
 
-const validateReview = (req, res, next) =>{
-    const {error} = reviewSchema.validate(req.body);
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
     if (error) { 
-         throw new ExpressError(msg, 400)
+        const msg = error.details.map(el => el.message).join(','); // ✅ 이 부분 필수
+        throw new ExpressError(msg, 400);
     } else {
         next();
     }
 }
+
 
 router.post('/', validateReview, catchAsync(async(req, res)=>{
     const campground = await Campground.findById(req.params.id);
