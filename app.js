@@ -17,7 +17,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const MongoStore = require("connect-mongo");
 
-const dbUrl = process.env.DB_URL
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews.js');
