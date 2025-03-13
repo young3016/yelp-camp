@@ -18,7 +18,6 @@ const helmet = require('helmet');
 const MongoStore = require("connect-mongo");
 
 const dbUrl = process.env.DB_URL
-console.log("DB", dbUrl);
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews.js');
@@ -45,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    url: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
         secret: 'nicesecret!'
