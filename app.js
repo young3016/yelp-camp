@@ -25,7 +25,10 @@ const reviewsRoutes = require('./routes/reviews.js');
 
 //dbUrl
 ///'mongodb://localhost:27017/yelp-camp'
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl)
+  .then(() => console.log("✅ MongoDB successfully connected!"))
+  .catch(err => console.log("❌ MongoDB connection failed:", err));
+
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
