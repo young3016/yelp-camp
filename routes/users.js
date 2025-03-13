@@ -35,10 +35,12 @@ router.post('/login',storeReturnTo, passport.authenticate('local', {failureFlash
     res.redirect(redirectUrl);
 })
 
-router.get('/logout', (req, res) => {
-    req.logout();
-    req.flash('success', "로그아웃 성공~!");
-    res.redirect('/campgrounds');
-})
+router.get('/logout', (req, res, next) => {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        req.flash('success', "로그아웃 성공~!");
+        res.redirect('/campgrounds');
+    });
+});
 
 module.exports = router;  
